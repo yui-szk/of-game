@@ -15,3 +15,8 @@ int main( ){
 	ofRunMainLoop();
 
 }
+
+// 探索型ゲーム
+// player wasd操作
+// enemy random
+// enemyに当たるとplayerのライフが減少
