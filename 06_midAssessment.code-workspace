@@ -1,14 +1,14 @@
 {
-	"folders": [
-		{
-			"path": "."
-		},
-		{
-			"path": "${workspaceRoot}/../../../../libs/openFrameworks"
-		},
-		{
-			"path": "${workspaceRoot}/../../../../addons"
-		}
-	],
-	"settings": {}
+  "folders": [
+    {
+      "path": "."
+    },
+    {
+      "path": "${workspaceRoot}/../../../../libs/openFrameworks"
+    },
+    {
+      "path": "${workspaceRoot}/../../../../addons"
+    }
+  ],
+  "settings": {}
 }
