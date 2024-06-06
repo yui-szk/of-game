@@ -1,5 +1,6 @@
 #pragma once
 
+#include "ball.h"
 #include "ofMain.h"
 
 class ofApp : public ofBaseApp
@@ -23,4 +24,6 @@ public:
 	void windowResized(int w, int h) override;
 	void dragEvent(ofDragInfo dragInfo) override;
 	void gotMessage(ofMessage msg) override;
+
+	Ball balls[20];
 };

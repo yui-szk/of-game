@@ -4,10 +4,13 @@ int snowX[1000];
 int snowY[1000];
 double snowSpeed[1000];
 
+float score;
+
 //--------------------------------------------------------------
 void ofApp::setup()
 {
 
+    // 雪の配列
     for (int i = 0; i < 1000; i++)
     {
         snowX[i] = ofRandom(0, 1024);
@@ -19,13 +22,27 @@ void ofApp::setup()
 //--------------------------------------------------------------
 void ofApp::update()
 {
+    score = ofGetElapsedTimef();
+
+    for (int i = 0; i < 20; i++)
+    {
+        balls[i].update();
+    }
+
+    for (int i = 0; i < score / 5; i++)
+    {
+        if (!balls[i].show)
+        {
+            balls[i] =
+                Ball(ofRandom(50, ofGetWidth()), ofRandom(30, 100), 3, 3, true);
+        }
+    }
 }
 
 //--------------------------------------------------------------
 void ofApp::draw()
 {
     ofFill();
-
     // 雪の描画
     ofSetColor(255, 255, 255);
     for (int i = 0; i < 1000; i++)
@@ -34,6 +51,11 @@ void ofApp::draw()
         snowY[i] += snowSpeed[i];
         if (snowY[i] > ofGetHeight())
             snowY[i] = 0;
+    }
+
+    for (int i = 0; i < 20; i++)
+    {
+        balls[i].draw();
     }
 }
 
