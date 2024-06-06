@@ -10,6 +10,8 @@ int life = 3;
 //--------------------------------------------------------------
 void ofApp::setup()
 {
+    ofSetCircleResolution(60);
+    ofBackground(200);
 
     // 雪の配列
     for (int i = 0; i < 1000; i++)
