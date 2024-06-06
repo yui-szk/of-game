@@ -85,7 +85,7 @@ void ofApp::draw() {
       ofDrawRectangle(0, 0, ofGetWidth(), ofGetHeight());
       ofSetColor(255);
       ofDrawBitmapString("final score:" + ofToString((int)score),
-                         ofGetWidth() / 2 - 10, ofGetHeight() / 2);
+                         ofGetWidth() / 2 - 40, ofGetHeight() / 2);
     }
   }
 
