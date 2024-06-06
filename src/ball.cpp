@@ -4,7 +4,7 @@ void Ball::update() {
   x += dx;
   y += dy;
 
-  if (y > ofGetHeight() - 50 || y < 0) {
+  if (y > ofGetHeight() - 54 || y < 0) {
     dy *= -1;
   }
   if (x > ofGetWidth() || x < 0) {
