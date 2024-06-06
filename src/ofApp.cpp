@@ -5,6 +5,7 @@ int snowY[1000];
 double snowSpeed[1000];
 
 float score;
+int life = 3;
 
 //--------------------------------------------------------------
 void ofApp::setup()
@@ -39,6 +40,18 @@ void ofApp::update()
                 Ball(ofRandom(50, ofGetWidth()), ofRandom(30, 100), 3, 3, true);
         }
     }
+
+    for (int i = 0; i < 20; i++)
+    {
+        if (balls[i].show == true &&
+            sqrt(pow((balls[i].x - shima.x), 2) +
+                 pow((balls[i].y - (shima.y + shima.scale * 70)), 2)) <
+                shima.scale * 160)
+        {
+            life--;
+            balls[i].show = false;
+        }
+    }
 }
 
 //--------------------------------------------------------------
@@ -60,6 +73,12 @@ void ofApp::draw()
         balls[i].draw();
     }
     shima.draw();
+
+    int x = 900, y = 70, side = 40;
+    for (int i = 0; i < life; i++)
+    {
+        ofDrawRectangle(x - 60 * i, y, side, side);
+    }
 }
 
 //--------------------------------------------------------------
