@@ -8,146 +8,106 @@ float score;
 int life = 3;
 
 //--------------------------------------------------------------
-void ofApp::setup()
-{
-    ofSetCircleResolution(60);
-    ofBackground(200);
+void ofApp::setup() {
+  ofSetCircleResolution(60);
+  ofBackground(200);
 
-    // 雪の配列
-    for (int i = 0; i < 1000; i++)
-    {
-        snowX[i] = ofRandom(0, 1024);
-        snowY[i] = ofRandom(0, 768);
-        snowSpeed[i] = ofRandom(1, 3);
+  // 雪の配列
+  for (int i = 0; i < 1000; i++) {
+    snowX[i] = ofRandom(0, 1024);
+    snowY[i] = ofRandom(0, 768);
+    snowSpeed[i] = ofRandom(1, 3);
+  }
+
+  shima = Shima(500, 648, 0.3);
+}
+
+//--------------------------------------------------------------
+void ofApp::update() {
+  score = ofGetElapsedTimef();
+
+  for (int i = 0; i < 20; i++) {
+    balls[i].update();
+  }
+
+  for (int i = 0; i < score / 5; i++) {
+    if (!balls[i].show) {
+      balls[i] =
+          Ball(ofRandom(50, ofGetWidth()), ofRandom(30, 100), 3, 3, true);
     }
+  }
 
-    shima = Shima(500, 648, 0.3);
-}
-
-//--------------------------------------------------------------
-void ofApp::update()
-{
-    score = ofGetElapsedTimef();
-
-    for (int i = 0; i < 20; i++)
-    {
-        balls[i].update();
+  for (int i = 0; i < 20; i++) {
+    if (balls[i].show == true &&
+        sqrt(pow((balls[i].x - shima.x), 2) +
+             pow((balls[i].y - (shima.y + shima.scale * 70)), 2)) <
+            shima.scale * 160) {
+      life--;
+      balls[i].show = false;
     }
-
-    for (int i = 0; i < score / 5; i++)
-    {
-        if (!balls[i].show)
-        {
-            balls[i] =
-                Ball(ofRandom(50, ofGetWidth()), ofRandom(30, 100), 3, 3, true);
-        }
-    }
-
-    for (int i = 0; i < 20; i++)
-    {
-        if (balls[i].show == true &&
-            sqrt(pow((balls[i].x - shima.x), 2) +
-                 pow((balls[i].y - (shima.y + shima.scale * 70)), 2)) <
-                shima.scale * 160)
-        {
-            life--;
-            balls[i].show = false;
-        }
-    }
+  }
 }
 
 //--------------------------------------------------------------
-void ofApp::draw()
-{
-    ofFill();
-    // 雪の描画
-    ofSetColor(255, 255, 255);
-    for (int i = 0; i < 1000; i++)
-    {
-        ofDrawCircle(snowX[i], snowY[i], 5);
-        snowY[i] += snowSpeed[i];
-        if (snowY[i] > ofGetHeight())
-            snowY[i] = 0;
-    }
+void ofApp::draw() {
+  ofFill();
+  // 雪の描画
+  ofSetColor(255, 255, 255);
+  for (int i = 0; i < 1000; i++) {
+    ofDrawCircle(snowX[i], snowY[i], 5);
+    snowY[i] += snowSpeed[i];
+    if (snowY[i] > ofGetHeight()) snowY[i] = 0;
+  }
 
-    for (int i = 0; i < 20; i++)
-    {
-        balls[i].draw();
-    }
-    shima.draw();
+  for (int i = 0; i < 20; i++) {
+    balls[i].draw();
+  }
+  shima.draw();
 
-    int x = 900, y = 70, side = 40;
-    for (int i = 0; i < life; i++)
-    {
-        ofDrawRectangle(x - 60 * i, y, side, side);
-    }
+  int x = 900, y = 70, side = 40;
+  for (int i = 0; i < life; i++) {
+    ofDrawRectangle(x - 60 * i, y, side, side);
+  }
 }
 
 //--------------------------------------------------------------
-void ofApp::exit()
-{
-}
+void ofApp::exit() {}
 
 //--------------------------------------------------------------
-void ofApp::keyPressed(int key)
-{
-}
+void ofApp::keyPressed(int key) {}
 
 //--------------------------------------------------------------
-void ofApp::keyReleased(int key)
-{
-}
+void ofApp::keyReleased(int key) {}
 
 //--------------------------------------------------------------
-void ofApp::mouseMoved(int x, int y)
-{
-    shima.x = x;
-}
+void ofApp::mouseMoved(int x, int y) { shima.x = x; }
 
 //--------------------------------------------------------------
-void ofApp::mouseDragged(int x, int y, int button)
-{
-}
+void ofApp::mouseDragged(int x, int y, int button) {}
 
 //--------------------------------------------------------------
-void ofApp::mousePressed(int x, int y, int button)
-{
-}
+void ofApp::mousePressed(int x, int y, int button) {}
 
 //--------------------------------------------------------------
-void ofApp::mouseReleased(int x, int y, int button)
-{
-}
+void ofApp::mouseReleased(int x, int y, int button) {}
 
 //--------------------------------------------------------------
-void ofApp::mouseScrolled(int x, int y, float scrollposX, float scrollposY)
-{
-}
+void ofApp::mouseScrolled(int x, int y, float scrollposX, float scrollposY) {}
 
 //--------------------------------------------------------------
-void ofApp::mouseEntered(int x, int y)
-{
-}
+void ofApp::mouseEntered(int x, int y) {}
 
 //--------------------------------------------------------------
-void ofApp::mouseExited(int x, int y)
-{
-}
+void ofApp::mouseExited(int x, int y) {}
 
 //--------------------------------------------------------------
-void ofApp::windowResized(int w, int h)
-{
-}
+void ofApp::windowResized(int w, int h) {}
 
 //--------------------------------------------------------------
-void ofApp::gotMessage(ofMessage msg)
-{
-}
+void ofApp::gotMessage(ofMessage msg) {}
 
 //--------------------------------------------------------------
-void ofApp::dragEvent(ofDragInfo dragInfo)
-{
-}
+void ofApp::dragEvent(ofDragInfo dragInfo) {}
 
 // #include "ofApp.h"
 
@@ -266,7 +226,8 @@ void ofApp::dragEvent(ofDragInfo dragInfo)
 //             balls[i].update();
 
 //             // プレイヤーとボールの衝突判定
-//             if ((player.x < balls[i].x && balls[i].x < player.x) && (player.y < balls[i].y && balls[i].y < player.y))
+//             if ((player.x < balls[i].x && balls[i].x < player.x) && (player.y
+//             < balls[i].y && balls[i].y < player.y))
 //             {
 //                 life--;
 //                 if (life <= 0)
@@ -277,7 +238,8 @@ void ofApp::dragEvent(ofDragInfo dragInfo)
 //         }
 
 //         // スコアを更新する
-//         if (balls[balls.size() - 1].y + balls[balls.size() - 1].radius >= ofGetHeight())
+//         if (balls[balls.size() - 1].y + balls[balls.size() - 1].radius >=
+//         ofGetHeight())
 //         {
 //             score++;
 

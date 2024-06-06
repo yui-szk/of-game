@@ -1,19 +1,15 @@
 #include "shima.h"
 
-void Shima::update()
-{
-  if (x < 50)
-  {
+void Shima::update() {
+  if (x < 50) {
     x = 50;
   }
-  if (x > ofGetWidth() - 50)
-  {
+  if (x > ofGetWidth() - 50) {
     x = ofGetWidth() - 50;
   }
 };
 
-void Shima::draw()
-{
+void Shima::draw() {
   // 羽と尾の描画
   ofSetColor(28, 28, 32);
   ofDrawTriangle(x - scale * 155, y + scale * 10, x - scale * 125,
