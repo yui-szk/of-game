@@ -35,7 +35,7 @@ void ofApp::update() {
   for (int i = 0; i < score / 5; i++) {
     if (!balls[i].show) {
       balls[i] =
-          Ball(ofRandom(50, ofGetWidth()), ofRandom(30, 100), 3, 3, true);
+          Ball(ofRandom(50, ofGetWidth()), ofRandom(30, 100), 4, 4, true);
     }
   }
 
