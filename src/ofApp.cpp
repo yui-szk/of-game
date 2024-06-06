@@ -37,6 +37,7 @@ void ofApp::update() {
     }
   }
 
+  // シマエナガとボールの当たり判定
   for (int i = 0; i < 20; i++) {
     if (balls[i].show == true &&
         sqrt(pow((balls[i].x - shima.x), 2) +
@@ -52,6 +53,10 @@ void ofApp::update() {
 void ofApp::draw() {
   ofFill();
 
+  // 地面の描画
+  ofSetColor(255);
+  ofDrawRectangle(0, ofGetHeight() - 50, ofGetWidth(), 50);
+
   // 雪の描画
   ofSetColor(255, 255, 255);
   for (int i = 0; i < 1000; i++) {
@@ -60,11 +65,15 @@ void ofApp::draw() {
     if (snowY[i] > ofGetHeight()) snowY[i] = 0;
   }
 
+  // ボールの描画
   for (int i = 0; i < 20; i++) {
     balls[i].draw();
   }
+
+  // シマエナガの描画
   shima.draw();
 
+  // ライフの描画
   int x = 900, y = 70, side = 40;
   for (int i = 0; i < life; i++) {
     ofDrawRectangle(x - 60 * i, y, side, side);
