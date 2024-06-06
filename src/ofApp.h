@@ -2,6 +2,7 @@
 
 #include "ball.h"
 #include "ofMain.h"
+#include "shima.h"
 
 class ofApp : public ofBaseApp
 {
@@ -26,4 +27,5 @@ public:
 	void gotMessage(ofMessage msg) override;
 
 	Ball balls[20];
+	Shima shima;
 };
