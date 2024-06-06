@@ -24,7 +24,9 @@ void ofApp::setup() {
 
 //--------------------------------------------------------------
 void ofApp::update() {
-  score = ofGetElapsedTimef();
+  if (life > 0) {
+    score = ofGetElapsedTimef();
+  }
 
   for (int i = 0; i < 20; i++) {
     balls[i].update();
@@ -55,10 +57,6 @@ void ofApp::update() {
 void ofApp::draw() {
   ofFill();
 
-  // 地面の描画
-  ofSetColor(255);
-  ofDrawRectangle(0, ofGetHeight() - 50, ofGetWidth(), 50);
-
   // 雪の描画
   ofSetColor(255, 255, 255);
   for (int i = 0; i < 1000; i++) {
@@ -72,14 +70,33 @@ void ofApp::draw() {
     balls[i].draw();
   }
 
-  // シマエナガの描画
-  shima.draw();
-
   // ライフの描画
   int x = 900, y = 70, side = 40;
   for (int i = 0; i < life; i++) {
     ofDrawRectangle(x - 60 * i, y, side, side);
   }
+
+  // スコアの描画
+  ofDrawBitmapString("score:" + ofToString((int)score), 100, 100);
+
+  // ゲームオーバー時の描画
+  if (life <= 0) {
+    for (int i = 0; i < 20; i++) {
+      balls[i].show = false;
+      ofSetColor(90);
+      ofDrawRectangle(0, 0, ofGetWidth(), ofGetHeight());
+      ofSetColor(255);
+      ofDrawBitmapString("final score:" + ofToString((int)score),
+                         ofGetWidth() / 2 - 10, ofGetHeight() / 2);
+    }
+  }
+
+  // 地面の描画
+  ofSetColor(255);
+  ofDrawRectangle(0, ofGetHeight() - 50, ofGetWidth(), 50);
+
+  // シマエナガの描画
+  shima.draw();
 }
 
 //--------------------------------------------------------------
