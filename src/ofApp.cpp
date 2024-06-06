@@ -6,6 +6,7 @@ double snowSpeed[1000];
 
 float score;
 int life = 3;
+int numBall = 50;
 
 //--------------------------------------------------------------
 void ofApp::setup() {
@@ -28,7 +29,7 @@ void ofApp::update() {
     score = ofGetElapsedTimef();
   }
 
-  for (int i = 0; i < 20; i++) {
+  for (int i = 0; i < numBall; i++) {
     balls[i].update();
   }
 
@@ -42,7 +43,7 @@ void ofApp::update() {
   shima.update();
 
   // シマエナガとボールの当たり判定
-  for (int i = 0; i < 20; i++) {
+  for (int i = 0; i < numBall; i++) {
     if (balls[i].show == true &&
         sqrt(pow((balls[i].x - shima.x), 2) +
              pow((balls[i].y - (shima.y + shima.scale * 70)), 2)) <
@@ -58,7 +59,7 @@ void ofApp::draw() {
   ofFill();
 
   // 雪の描画
-  ofSetColor(255, 255, 255);
+  ofSetColor(255);
   for (int i = 0; i < 1000; i++) {
     ofDrawCircle(snowX[i], snowY[i], 5);
     snowY[i] += snowSpeed[i];
@@ -66,7 +67,7 @@ void ofApp::draw() {
   }
 
   // ボールの描画
-  for (int i = 0; i < 20; i++) {
+  for (int i = 0; i < numBall; i++) {
     balls[i].draw();
   }
 
@@ -81,7 +82,7 @@ void ofApp::draw() {
 
   // ゲームオーバー時の描画
   if (life <= 0) {
-    for (int i = 0; i < 20; i++) {
+    for (int i = 0; i < numBall; i++) {
       balls[i].show = false;
       ofSetColor(90);
       ofDrawRectangle(0, 0, ofGetWidth(), ofGetHeight());
