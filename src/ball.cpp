@@ -14,7 +14,7 @@ void Ball::update() {
 
 void Ball::draw() {
   if (show) {
-    ofSetColor(0, 0, 0);
+    ofSetColor(29, 80, 162);
     ofDrawCircle(x, y, 8);
   }
 };
