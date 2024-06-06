@@ -1,11 +1,11 @@
 #include "shima.h"
 
 void Shima::update() {
-  if (x < 0) {
-    x = 0;
+  if (x < 0 + scale * 150) {
+    x = 0 + scale * 150;
   }
-  if (x > ofGetWidth()) {
-    x = ofGetWidth();
+  if (x > ofGetWidth() - scale * 150) {
+    x = ofGetWidth() - scale * 150;
   }
 };
 
