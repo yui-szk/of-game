@@ -1,4 +1,4 @@
-#　 Snow Fairy Ball Avoiding Game
+# Snow Fairy Ball Avoiding Game
 
 game image
 
