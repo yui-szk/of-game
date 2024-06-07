@@ -10,6 +10,7 @@ class ofApp : public ofBaseApp {
   void update() override;
   void draw() override;
   void mouseMoved(int x, int y) override;
+  void keyPressed(int key) override;
 
   Ball balls[50];
   Shima shima;

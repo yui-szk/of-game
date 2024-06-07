@@ -98,3 +98,10 @@ void ofApp::draw() {
 }
 
 void ofApp::mouseMoved(int x, int y) { shima.x = x; }
+
+void ofApp::keyPressed(int key) {
+  if (key == 's') {
+    life = 3;
+    ofResetElapsedTimeCounter();
+  }
+}
