@@ -8,7 +8,14 @@ float score;
 int life = 3;
 int numBall = 50;
 
+ofSoundPlayer backMusic;
+
 void ofApp::setup() {
+  // BGMをループ再生
+  backMusic.load("snow.mp3");
+  backMusic.setLoop(true);
+  backMusic.play();
+
   ofSetCircleResolution(60);
   ofBackground(200);
 
